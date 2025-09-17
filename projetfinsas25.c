@@ -343,10 +343,72 @@ int main() {
         
 } // fin de choix 5
 
-    else if (choix == 6)
+     else if (choix == 6)
+{
+    if (nb_mots == 0)
+    {
+        printf("Aucun texte analyse. Choisissez d'abord l'option 1.\n");
+    }
+    else
+    {
+        int total_mots = 0;
+        int somme_longueurs = 0;
+        int max_longueur = longueurs[0];
+        int min_longueur = longueurs[0];
+        int max_freq = occurences[0];
+
+        char mot_plus_long[50];
+        char mot_plus_court[50];
+        char mot_plus_frequent[50];
+
+        strcpy(mot_plus_long, mots[0]);
+        strcpy(mot_plus_court, mots[0]);
+        strcpy(mot_plus_frequent, mots[0]);
+
+        for (int i = 0; i < nb_mots; i++)
+        {
+            total_mots += occurences[i];
+            somme_longueurs += longueurs[i] * occurences[i];
+
+            if (longueurs[i] > max_longueur)
+            {
+                max_longueur = longueurs[i];
+                strcpy(mot_plus_long, mots[i]);
+            }
+
+            if (longueurs[i] < min_longueur)
+            {
+                min_longueur = longueurs[i];
+                strcpy(mot_plus_court, mots[i]);
+            }
+
+            if (occurences[i] > max_freq)
+            {
+                max_freq = occurences[i];
+                strcpy(mot_plus_frequent, mots[i]);
+            }
+        }
+
+        float diversite = (float)nb_mots / total_mots;
+        float moyenne = (float)somme_longueurs / total_mots;
+
+        printf("\n Statistiques globales :\n");
+        printf("Nombre total de mots : %d\n", total_mots);
+        printf("Nombre de mots uniques : %d\n", nb_mots);
+        printf("Diversite lexicale : %.2f\n", diversite);
+        printf("Longueur moyenne des mots : %.2f\n", moyenne);
+        printf("Mot le plus long : %s (%d lettres)\n", mot_plus_long, max_longueur);
+        printf("Mot le plus court : %s (%d lettres)\n", mot_plus_court, min_longueur);
+        printf("Mot le plus frequent : %s (%d fois)\n", mot_plus_frequent, max_freq);
+    }
+}
+
+    else if (choix == 7)
     {
         
     }
+    
+
     
 
     
